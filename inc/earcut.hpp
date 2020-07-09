@@ -227,7 +227,7 @@ Earcut<N>::filterPoints(Node* start, Node* end) {
     do {
         again = false;
 
-        if (!p->steiner && (equals(p, p->next) || area(p->prev, p, p->next) == 0)) {
+        if (!p->steiner && (equals(p, p->next) || (p->next && area(p->prev, p, p->next) == 0))) {
             removeNode(p);
             p = end = p->prev;
 
@@ -237,7 +237,7 @@ Earcut<N>::filterPoints(Node* start, Node* end) {
         } else {
             p = p->next;
         }
-    } while (again || p != end);
+    } while ((again || p != end) && p);
 
     return end;
 }
@@ -657,7 +657,7 @@ double Earcut<N>::area(const Node* p, const Node* q, const Node* r) const {
 // check if two points are equal
 template <typename N>
 bool Earcut<N>::equals(const Node* p1, const Node* p2) {
-    return p1->x == p2->x && p1->y == p2->y;
+    return p1 && p2 && p1->x == p2->x && p1->y == p2->y;
 }
 
 // check if two segments intersect
