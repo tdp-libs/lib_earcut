@@ -1,5 +1,7 @@
 #pragma once
 
+#include "lib_platform/Globals.h"
+
 #include <algorithm>
 #include <cassert>
 #include <cmath>
@@ -88,6 +90,7 @@ private:
 
     template <typename T, typename Alloc = std::allocator<T>>
     class ObjectPool {
+      LIB_PLATFORM_NONCOPYABLE(ObjectPool);
     public:
         ObjectPool() { }
         ObjectPool(std::size_t blockSize_) {
