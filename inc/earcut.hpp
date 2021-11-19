@@ -8,6 +8,11 @@
 #include <memory>
 #include <vector>
 
+// disable documentation warnings on clang
+#if defined(__clang__)
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 namespace mapbox {
 
 namespace util {
@@ -773,3 +778,7 @@ std::vector<N> earcut(const Polygon& poly) {
     return std::move(earcut.indices);
 }
 }
+
+#if defined(__clang__)
+    #pragma GCC diagnostic pop
+#endif
