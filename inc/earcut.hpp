@@ -200,10 +200,10 @@ Earcut<N>::linkedList(const Ring& points, const bool clockwise) {
   for(i = 0, j = len > 0 ? len - 1 : 0; i < len; j = i++) {
     const auto& p1 = points[i];
     const auto& p2 = points[j];
-    const double p20 = util::nth<0, Point>::get(p2);
-    const double p10 = util::nth<0, Point>::get(p1);
-    const double p11 = util::nth<1, Point>::get(p1);
-    const double p21 = util::nth<1, Point>::get(p2);
+    const double p20 = double(util::nth<0, Point>::get(p2));
+    const double p10 = double(util::nth<0, Point>::get(p1));
+    const double p11 = double(util::nth<1, Point>::get(p1));
+    const double p21 = double(util::nth<1, Point>::get(p2));
     sum += (p20 - p10) * (p11 + p21);
   }
 
